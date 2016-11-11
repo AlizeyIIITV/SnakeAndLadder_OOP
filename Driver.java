@@ -14,8 +14,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Driver {
     
-   
-    
     public static void main(String arg[]){
         
         Board b = new Board();
@@ -26,6 +24,9 @@ public class Driver {
         Green G = new Green("Green");
         Blue B = new Blue("Blue");
         Yellow Y = new Yellow("Yellow");
+        
+        Snake s = new Snake(0);
+        Ladder l = new Ladder(0);
         
         int loc = 0;
         // generating a random number between 1 and 6.
@@ -43,7 +44,7 @@ public class Driver {
         while(end == false){
             System.out.println("");
         
-            for(i = 0; i <= 4; i++ ){
+            for(i = 0; i <= 5; i++ ){
                 for(j = 0; j <= 100; j++){
                 
                     if(Board.board[i][j] != null)
@@ -51,6 +52,21 @@ public class Driver {
                     
                     else if(i == 0 && Board.board[i][j] == null)
                         System.out.print(j + " ");
+                    
+                    else if(i == 5 && Board.board[0][j] != null){
+                        if(Board.board[0][j].getClass() == s.getClass()){
+                            s = (Snake) Board.board[0][j];
+                            int k = j - s.poison;
+                            System.out.print(k+ " ");
+                        }
+                        else if(Board.board[0][j].getClass() == l.getClass()){
+                            l = (Ladder) Board.board[0][j];
+                            int t = j + l.climb;
+                            System.out.print(t+" ");
+                            
+                        }
+                    }
+                    
                     
                     else if(j < 10)
                         System.out.print("-"+" ");
@@ -61,6 +77,7 @@ public class Driver {
                     else
                         System.out.print("--"+ " ");
                 }
+                
                 System.out.println("");
             }
         
@@ -69,7 +86,7 @@ public class Driver {
             if(Board.chance%4 == 0){
                 System.out.println("Red's chance!");
             
-                System.out.println("Enter any digit to roll the dice! :)");
+                System.out.println("Press ENTER to roll the dice! :)");
             
                 for(i = 0; i < 101; i++){
                     if(Board.board[1][i] == null){
@@ -81,7 +98,7 @@ public class Driver {
                     }
                 }
             
-                int temp = sc.nextInt();
+                sc.nextLine();
             
                 dice = ThreadLocalRandom.current().nextInt(1, 7);
             
@@ -98,7 +115,7 @@ public class Driver {
             else if(Board.chance%4 == 1){
                 System.out.println("Green's chance!");
             
-                System.out.println("Enter any digit to roll the dice! :)");
+                System.out.println("Press ENTER to roll the dice! :)");
             
                 for(i = 0; i < 101; i++){
                     if(Board.board[2][i] == null){
@@ -110,7 +127,7 @@ public class Driver {
                     }
                 }
             
-                int temp = sc.nextInt();
+                sc.nextLine();
             
                 dice = ThreadLocalRandom.current().nextInt(1, 7);
             
@@ -127,7 +144,7 @@ public class Driver {
             else if(Board.chance%4 == 2){
                 System.out.println("Blue's chance!");
             
-                System.out.println("Enter any digit to roll the dice! :)");
+                System.out.println("Press ENTER to roll the dice! :)");
             
                 for(i = 0; i < 101; i++){
                     if(Board.board[3][i] == null){
@@ -138,7 +155,8 @@ public class Driver {
                         break;
                     }
                 }
-                int temp = sc.nextInt();
+                
+                sc.nextLine();
             
                 dice = ThreadLocalRandom.current().nextInt(1, 7);
             
@@ -155,7 +173,7 @@ public class Driver {
             else if(Board.chance%4 == 3){
                 System.out.println("Yellow's chance!");
             
-                System.out.println("Enter any digit to roll the dice! :)");
+                System.out.println("Press ENTER to roll the dice! :)");
             
                 for(i = 0; i < 101; i++){
                     if(Board.board[4][i] == null){
@@ -167,7 +185,7 @@ public class Driver {
                     }
                 }
             
-                int temp = sc.nextInt();
+                sc.nextLine();
             
                 dice = ThreadLocalRandom.current().nextInt(1, 7);
             

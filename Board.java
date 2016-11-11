@@ -12,7 +12,7 @@ package SnakeAndLadder;
 public class Board {
     
     
-    public static Object board[][] = new Object[5][101];
+    public static Object board[][] = new Object[6][101];
  
     public static int chance = 4;
     /* for mod(4)== 0 red will play, for 1 green will play, for 2 blue will play and for 3 yellow will play*/
